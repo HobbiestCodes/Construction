@@ -1,0 +1,987 @@
+@import "./same";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  cursor: default;
+  // overflow-x: hidden;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+.main {
+  @include full();
+  padding: 20px 20px;
+
+  &#home {
+    position: relative;
+    .img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-position: center center;
+      background-size: cover;
+      filter: brightness(50%);
+    }
+    header {
+      height: 100%;
+      .btns {
+        width: 100%;
+        position: relative;
+        display: none;
+        overflow-x: unset;
+        @include media(mobile) {
+          display: initial;
+        }
+        .btn {
+          // background-color: red;
+          font-size: 30px;
+          color: white;
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          overflow-x: unset;
+        &.open {
+          opacity: 1;
+          z-index: 2;
+        }
+        &.cross {
+          z-index: 2;
+          opacity: 1;
+        }
+
+        }
+      }
+      nav {
+        @include flex(space-between, center);
+        margin: 0px 34px;
+        @include media(mobile) {
+          @include flex(flex-start, center, column);
+          // height: 100%;
+          padding: 30px 10px;
+          gap: 30px;
+          opacity: 0;
+          max-height: 0;
+          background-color: #2020206b;
+          transition: 0.2s all linear;
+        &.on {
+          opacity: 1;
+          max-height: 100%;
+        }
+        }
+        @include media(tablet) {
+          width: 100%;
+          justify-content: flex-start;
+          gap: 40px;
+          margin: 0px 0px;
+        }
+        ul {
+          @include flex();
+          gap: 30px;
+          @include media(mobile) {
+            flex-direction: column;
+          }
+          @include media(tablet) {
+          gap: 15px;
+          }
+          li {
+            color: white;
+            letter-spacing: 1.3px;
+            font-weight: 300;
+            font-family: "Raleway", sans-serif;
+            list-style: none;
+            font-size: 20px;
+            position: relative;
+            padding: 0px 7px 0px 7px;
+            transition: all 0.3s ease-in-out;
+            @include media(tablet) {
+              font-size: 18px;
+            }
+            a {
+              cursor: pointer;
+              text-decoration: none;
+              color: white;
+            }
+            &.login {
+              background-color: white;
+              border: 2px solid white;
+              color: #000;
+              padding: 10px 8px;
+              font-size: 18px;
+              text-transform: uppercase;
+              font-weight: 600;
+              letter-spacing: 1.5px;
+              cursor: pointer;
+              @include media(tablet) {
+              padding: 6px 6px;
+              font-size: 16px;
+              }
+              &.sing {
+                background-color: transparent;
+                border: 2px solid white;
+                color: white;
+                &:hover {
+                  background-color: white;
+                  color: #000;
+                }
+              }
+              &:hover {
+                border: 2px solid white;
+                background-color: transparent;
+                transform: scale(1);
+                font-size: 18px;
+                color: white;
+              }
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              width: 0%;
+              height: 100%;
+              border-bottom: 2px solid white;
+              z-index: -1;
+              transition: all 0.3s ease-in-out;
+            }
+            &:hover {
+              transform: scale(1.1);
+              font-size: 22px;
+              @include media(tablet) {
+                font-size: 19px;
+
+              }
+
+              &::after {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-content {
+      @include flex(center, center, column);
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      // background: linear-gradient(to right, rgba(255, 255, 0, 0.237) 20%, transparent);
+      text-align: center;
+      padding: 50px 20px;
+
+      @include media(tablet) {
+      width: 100%;
+      }
+
+      @include media(mobile,tablet) {
+        padding: 0;
+      
+        &.on {
+          transition: all 0.5s ease;
+          opacity: 0;
+        }
+      }
+      h1 {
+        font-size: 50px;
+        font-weight: 700;
+        // margin-bottom: 20px;
+        font-family: "Raleway", sans-serif;
+        @include media(mobile) {
+        font-size: 45px;
+        }
+      }
+      h2 {
+        font-family: "Tenor Sans", sans-serif;
+        font-weight: 300;
+        font-size: 30px;
+      }
+      p {
+        font-size: 20px;
+        font-weight: 500;
+        font-family: "Raleway", sans-serif;
+        @include media(tablet) {
+        width: 80%;
+        }
+      }
+      button {
+        padding: 10px 20px;
+        border: 2px solid #fff;
+        background: transparent;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: "Raleway", sans-serif;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: #fff;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  &#about {
+    position: relative;
+    padding: 20px 10px;
+    @include media(mobile, tablet) {
+      height: auto
+    }
+    .parent {
+      // overflow: hidden;
+      @include flex(space-between, flex-start);
+      margin: 5px 13px;
+      height: 100%;
+      @include media(mobile, tablet) {
+        margin: 0;
+      }
+      .images {
+        width: 55%;
+        height: 100%;
+        position: relative;
+        @include flex(flex-start, center, column);
+        gap: 10px;
+        @include media(mobile) {
+          position: absolute;
+          gap: 30px;
+          width: 100%;
+          inset: 10%;
+          left: 5%;
+          opacity: 0.4;
+        }
+        @include media(tablet) {
+        @include flex(flex-start, flex-start, column);
+        }
+      }
+    }
+    .upper {
+      @include flex;
+      width: 100%;
+      gap: 5px;
+      @include flex(flex-start, flex-start);
+      &.lower {
+        position: relative;
+        z-index: -1;
+        .box {
+          .photo {
+            inset: 60%;
+            left: 0%;
+          }
+        }
+      }
+      .box {
+        position: relative;
+        // background-color: red;
+        .photo {
+          position: relative;
+          width: 300px;
+          height: 150px;
+          inset: 0;
+          border-radius: 10px;
+          @include media(mobile, tablet) {
+           width: 180px;
+           height: 130px;
+          }
+          @include media(tablet) {
+            width: 200px;
+          }
+        &.small {
+          width: 180px;
+          @include media(mobile) {
+            width: 100px;
+           }
+           @include media(tablet) {
+            width: 140px;
+           }
+        }
+          img {
+            background-position: center center;
+            transition: all 0.4s ease;
+            width: 100%;
+            height: 100%;
+          border-radius: 10px;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    height: 100%;
+    width: 40%;
+
+    @include flex(flex-start, flex-start, column);
+    position: relative;
+    @include media(mobile) {
+      width: 100%;
+    }
+    .titles {
+      h2 {
+        font-family: "Raleway", sans-serif;
+        font-size: 16px;
+        // width: fit-content;
+        text-align: left;
+        border-bottom: 1px solid $PrimaryColor;
+        color: $PrimaryColor;
+      }
+      h1 {
+        font-family: "Tenor Sans", sans-serif;
+        color: $thirdColor;
+        font-size: 40px;
+        width: 100%;
+        font-weight: 800;
+        @include media(mobile, tablet) {
+          font-size: 30px;
+        }
+      }
+      p {
+        font-family: "Raleway", sans-serif;
+        font-size: 16px;
+        width: 80%;
+        font-weight: 500;
+        color: $thirdColor;
+        @include media(mobile, tablet) {
+          width: 100%;
+        }
+      }
+
+    }
+    .context {
+      margin-top: 6%;
+      @include flex(space-between, center);
+      gap: 6px;
+
+      .box {
+        @include flex($fd: column);
+        background-color: $PrimaryColor;
+        padding: 16px 30px;
+        width: fit-content;
+        height: 13rem;
+        @include media(mobile, tablet) {
+          width: 100%;
+          height: 10rem;
+        }
+        h3 {
+          font-family: "Courier New", Courier, monospace;
+          color: whitesmoke;
+          font-size: 40px;
+        }
+        h1 {
+          width: fit-content;
+          color: $thirdColor;
+          font-weight: 200;
+        }
+      }
+
+      .para {
+        @include flex(flex-start, flex-start, column);
+        gap: 20px;
+        width: 70%;
+        @include media(mobile, tablet) {
+          width: 100%;
+        }
+        .text {
+          border-bottom: 1px solid $thirdColor;
+          border-radius: 5px 0px;
+          width: fit-content;
+          h4 {
+            font-family: "Raleway", sans-serif;
+            color: $PrimaryColor;
+            letter-spacing: 1px;
+            font-size: 16px;
+            text-transform: uppercase;
+          }
+          h5 {
+            font-family: "Tenor Sans", sans-serif;
+            font-weight: 100;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+    .connect {
+      margin-top: 6%;
+      @include media(mobile, tablet) {
+        margin: 6% 0;
+      }
+      @include flex(flex-start, flex-start, column);
+      gap: 30px;
+      .methods {
+        @include flex(flex-start, flex-start);
+        gap: 20px;
+
+        ul {
+          @include flex(center);
+          gap: 20px;
+          @include media(mobile, tablet) {
+            justify-content: start;
+            gap: 10px;
+          }
+          li {
+            list-style-type: none;
+            background-color: $thirdColor;
+            padding: 15px 18px;
+            border-radius: 50px;
+            transition: 0.2s ease;
+            cursor: pointer;
+            @include media(mobile, tablet) {
+              padding: 10px 12px;
+              font-size: 20px;
+            }
+            &:hover {
+              transform: scale(1.1) translateY(-10px);
+            }
+            a {
+              cursor: pointer;
+              text-decoration: none;
+              color: whitesmoke;
+              font-size: 25px;
+            }
+          }
+        }
+        .method {
+          @include flex();
+          gap: 10px;
+
+          h5 {
+            padding: 10px 10px 8px;
+            background-color: $PrimaryColor;
+            border-radius: 50px;
+            color: $thirdColor;
+            font-size: 25px;
+          }
+          h3 {
+            font-family: "Raleway", sans-serif;
+            font-weight: 300;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  &#services {
+    margin: 0px 20px;
+    @include media(mobile, tablet) {
+    margin: 0;
+    padding: 20px 10px;
+    height: auto;
+    }
+    h2 {
+      font-family: "Tenor Sans", sans-serif;
+      font-weight: 400;
+      font-size: 45px;
+      letter-spacing: 2px;
+      width: fit-content;
+      color: $PrimaryColor;
+      border-bottom: 2px solid $PrimaryColor;
+
+      @include media(mobile, tablet) {
+      font-size: 30px;
+      }
+    }
+    h3 {
+      font-family: "Tenor Sans", sans-serif;
+      font-weight: 200;
+      font-size: 20px;
+      letter-spacing: 2px;
+      @include media(mobile) {
+        font-size: 15px;
+      }
+      @include media(tablet) {
+        font-size: 18px;
+      }
+    }
+
+    .children {
+      margin-top: 5%;
+      width: 100%;
+      height: 100%;
+      @include media(mobile) {
+      margin-top: 10%;
+      }
+      .content {
+        width: 100%;
+        height: 100%;
+        @include flex(flex-start, flex-start);
+        .cards {
+          @include flex(flex-start, center);
+          margin-left: 2%;
+
+          gap: 45px;
+          .dabba {
+            width: 300px;
+            .icon {
+              background-color: $PrimaryColor;
+              width: fit-content;
+              font-size: 2rem;
+              padding: 0.9rem 1.3rem;
+              border-radius: 20px 5px 20px 5px;
+              color: white;
+              margin-bottom: 10px;
+
+              @include media(mobile, tablet) {
+                padding: 0.8rem 1rem;
+                font-size: 1.7rem;
+              }
+            }
+            h1 {
+              font-family: "Tenor Sans", sans-serif;
+              color: $thirdColor;
+              @include media(mobile, tablet) {
+              font-size: 22px;
+              }
+            }
+            p {
+              font-family: "Raleway", sans-serif;
+              font-weight: 400;
+              margin: 2px 0px;
+              @include media(mobile, tablet) {
+              font-size: 17px;
+              width: 98%;
+              }
+            }
+            button {
+              border: transparent;
+              outline: transparent;
+              background-color: transparent;
+              font-size: 16px;
+              font-family: "Raleway", sans-serif;
+              padding: 5px 0px 0px;
+              border-bottom: 2px solid $PrimaryColor;
+              font-weight: 400;
+              cursor: pointer;
+              transition: 430ms all cubic-bezier(0.075, 0.82, 0.165, 1);
+              &:hover {
+                transform: scale(1.1);
+                color: $PrimaryColor;
+              }
+              &:active {
+                transform: scale(0.9);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &#partners {
+    h1 {
+      font-family: "Tenor Sans", sans-serif;
+      font-weight: 400;
+      font-size: 40px;
+      color: $thirdColor;
+      border-bottom: 2px solid $thirdColor;
+      width: 20%;
+      @include media(mobile) {
+      font-size: 30px;
+      width: 100%;
+      }
+      @include media(tablet) {
+      width: 50%;
+      }
+    }
+    h3 {
+      font-family: "Raleway", sans-serif;
+      font-weight: 400;
+      font-size: 23px;
+      width: 40%;
+      color: $PrimaryColor;
+      @include media(mobile, tablet) {
+      width: 100%;
+      font-size: 18px;
+      margin-top: 5px;
+      }
+    }
+  }
+
+  &#contact {
+    @include media(mobile) {
+      height: auto;
+    }
+    // padding: ;
+    .titles {
+      @include flex(flex-start, center);
+      h1 {
+        font-family: "Tenor Sans", sans-serif;
+      font-weight: 300;
+      font-size: 45px;
+      color: $PrimaryColor;
+      letter-spacing: 2px;
+      @include media(mobile, tablet) {
+        font-size: 30px;
+      }
+    }
+    h3 {
+      font-family: "Raleway", sans-serif;
+      font-weight: 400;
+      font-size: 21px;
+      color: $thirdColor;
+      @include media(mobile, tablet) {
+      font-size: 18px
+    }
+  }
+}
+
+    .parent {
+      @include flex(center, center);
+      position: relative;
+      margin: 60px 0px;
+      .ofcBtn {
+        display: none;
+        padding: 8px 10px;
+        border: transparent;
+        background-color: rgb(74, 40, 27);
+        color: white;
+        font-size: 14px;
+
+        border-radius: 30px;
+        font-family: 'Raleway', sans-serif;
+        @include media(mobile) {
+          display: block;
+        }
+      }
+      .contacts {
+        position: relative;
+        width: 60%;
+        height: auto;
+        @include flex(flex-end, flex-end, column);
+        background: rgb(232, 227, 219);
+        border-radius: 10px;
+        padding: 20px 20px;
+        box-shadow: 16px 0px 23px rgba(0, 0, 0, 0.174);
+        @include media(mobile, tablet) {
+        width: 90%;
+        height: 100%;
+        margin-bottom: 5%;
+        padding: 20px 10px;
+        }
+        .office {
+        box-shadow: 16px 0px 25px rgba(0, 0, 0, 0.315);
+            position: absolute;
+            inset: 0;
+            top: -6%;
+            left: -3%;
+            width: 50%;
+            height: fit-content;
+            background-color:rgb(74, 40, 27);
+            border-radius: 20px;
+            padding: 20px 20px;
+            z-index: 9;
+
+          &.appear {
+            display: initial;
+          }
+            @include media(mobile) {
+              top: 5%;
+              left: 0%;
+              width: 100%;
+              padding: 20px 10px;
+              margin-bottom: 5%;
+              display: none;
+              transition: 0.8s display ease !important;
+            }
+
+          h2 {
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            font-size: 40px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            letter-spacing: 6px;
+            border-bottom: 2px solid white;
+
+            @include media(mobile, tablet) {
+            font-size: 30px;
+            
+            }
+          span {
+            color: salmon;
+          }
+          }
+          p {
+            margin: 5px 0px;
+            color: #c6b8b8;
+            font-family: 'Raleway', sans-serif;
+            letter-spacing: 1px;
+            font-size: 16px;
+            line-height: 1.5;
+            @include media(mobile, tablet) {
+            font-size: 14px;
+            }
+          }
+          .places {
+            @include flex(flex-start, flex-start, column);
+            gap: 40px;
+            margin-top: 30px;
+            @include media(mobile, tablet) {
+            gap: 20px
+            }
+          .sets {
+            @include flex(flex-start);
+            gap: 22px;
+            @include media(mobile, tablet) {
+            gap: 18px;
+            }
+            &:nth-child(1) {
+              gap: 10px;
+            }
+          h3 {
+            color: salmon;
+            font-size: 26px;
+            font-weight: 100;
+            @include media(mobile, tablet) {
+            font-size: 20px;
+            }
+          }
+          
+          h4 {
+            color: #bfbfbf;
+            font-size: 18px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            letter-spacing: 2px;
+            @include media(mobile, tablet) {
+            font-size: 16px;
+            }
+          }
+            h1 {
+              font-family: 'Tenor Sans', sans-serif;
+              font-size: 25px;
+              color: whitesmoke;
+              font-weight: 200;
+              @include media(mobile, tablet) {
+              font-size: 19px;
+              }
+            }
+          p {
+            margin-top: -1%;
+            font-size: 16px;
+            @include media(mobile, tablet) {
+            font-size: 14px;
+            }
+          }
+
+
+          }
+
+          }
+        }
+        
+        h2 {
+          font-family: "Raleway", sans-serif;
+          text-transform: uppercase;
+          text-align: right;
+          width: 100%;
+          color: #202020;
+          font-weight: 600;
+          letter-spacing: 3px;
+          font-size: 30px;
+          @include media(mobile) {
+          font-size: 25px;
+          text-align: left;
+          }
+          span {
+            color: $PrimaryColor;
+          }
+        }
+        form {
+          width: 100%;
+          height: 100%;
+          @include flex(flex-start, flex-end, column);
+          padding: 16px 20px;
+
+          @include media(mobile) {
+          @include flex(flex-start, flex-start);
+          padding: 16px 3px
+          }
+          .form-items {
+            position: relative;
+            margin-bottom: 20px;
+
+            label {
+              font-family: "Tenor Sans", sans-serif;
+              position: absolute;
+              cursor: text;
+              z-index: 2;
+              top: 13px;
+              left: 12px;
+              font-size: 12px;
+              font-weight: bold;
+              //   background: #fff;
+              padding: 0 10px;
+              color: #686868;
+              transition: all 0.3s ease;
+            }
+            input, textarea {
+              display: block;
+              width: 300px;
+              height: 40px;
+              background: transparent;
+              outline: transparent;
+              border: solid 1.5px #5f5f5f;
+              transition: all 0.3s ease;
+              padding: 0 15px;
+              border-radius: 10px;
+            @include media(mobile, tablet) {
+            width: 100%;  
+            }
+              &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+  margin: 0;
+              }
+              &:focus + label, &:valid + label {
+                font-size: 11px;
+                top: -7px;
+                background-color: rgb(232, 227, 219);
+              }
+              &:focus + label {
+                color: $PrimaryColor;
+              }
+              &:focus {
+                border-color: $PrimaryColor;
+              }
+
+            }
+            
+                      textarea {
+                        resize: none;
+                        height: 200px;
+                        width: 350px;
+                        outline: transparent;
+                        padding: 10px 15px;
+                        @include media(mobile, tablet) {
+                        width: 230px;
+                        }
+                      }
+          }
+
+          button {
+            padding: 14px 16px;
+            border: transparent;
+            outline: transparent;
+            font-size: 19px;
+            background-color: $PrimaryColor;
+            color: white;
+            font-family: 'Raleway', sans-serif;
+            transition: 0.2s ease;
+            font-weight: 100;
+            border-radius: 50px;
+            cursor: pointer;
+            @include media(mobile, tablet) {
+              padding: 8px 10px;
+              font-size: 16px;
+            }
+        &:hover {
+            background-color: rgb(152, 40, 0)
+        }
+        &:active {
+            transform: scale(0.9)
+        }
+          }
+        }
+
+        @include flex();
+      }
+    }
+  }
+}
+.footer {
+  background-color: $thirdColor; /* Set your preferred background color */
+  color: #ffffff; /* Set text color */
+  padding: 40px 30px;
+  text-align: center;
+  height: 15rem;
+  @include flex(space-between, flex-start);
+  position: relative;
+  overflow: hidden;
+
+  @include media(mobile) {
+    height: 20rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 10px;
+  }
+
+  .company {
+    @include flex(flex-start, flex-start, column);
+    gap: 3px;
+    @include media(mobile) {
+      width: 100%;
+    }
+    h1 {
+      font-family: 'Tenor Sans', sans-serif;
+      font-weight: 200;
+      letter-spacing: 2px;
+          @include media(mobile) {
+     font-size: 19px;
+    }
+    }
+    h2 {
+      font-family: 'Raleway', sans-serif;
+      letter-spacing: 1.3px;
+      color: $PrimaryColor;
+      font-weight: 200; 
+      font-size: 20px;
+      @include media(mobile) {
+        font-size: 16px;
+       }
+    }
+    p {
+      font-family: 'Raleway', sans-serif;
+      letter-spacing: 1.3px;
+      @include media(mobile) {
+        font-size: 14px;
+       }
+    }
+
+    &.contacts, &.social {
+      h2 {
+        font-size: 26px;
+        @include media(mobile) {
+          font-size: 20px;
+         }
+      }
+      p {
+        a {
+          color: white;
+        }
+      }
+    }
+      &.social {
+        a {
+          font-family: 'Raleway', sans-serif;
+          color: white;
+          text-decoration: none;
+          transition: 200ms ease-in-out;
+        &:hover {
+          transform: scale(1.1);
+          color: $PrimaryColor;
+        }
+        }
+    }
+  }
+  .copyright {
+    position: absolute;
+    top: 85%;
+    left: 1%;
+    font-family: 'Raleway', sans-serif;
+    @include media(mobile) {
+      top: 93%;
+     }
+    span {
+      color: $PrimaryColor;
+    }
+  }
+
+}
+

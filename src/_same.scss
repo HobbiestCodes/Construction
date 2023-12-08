@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&family=Tenor+Sans&display=swap");
+
+
+$PrimaryColor: orangered;
+$secondaryColor: gold;
+$thirdColor: rgb(0, 0, 75);
+
+@mixin full($hi: 100vh, $wd: 100vw) {
+    height: $hi;
+    width: $wd;
+  }
+  @mixin flex($jc: center, $ai: center, $fd: row, $fw: wrap) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $fd;
+    flex-wrap: $fw;
+  }
+
+$breakpoints: (
+  mobile : 0px, 
+  tablet : 768px,
+  desktop: 1024px,
+);
+
+$maxPoints: (
+	mobile: 767px,
+	tablet: 1023px,
+  desktop: 1043px
+
+);
+
+@mixin media($keys...) {
+	@each $key in $keys {
+		@media screen and (min-width: map-get($breakpoints, $key)) and (max-width: map-get($maxPoints, $key)) {
+			@content;
+		}
+	}
+}
