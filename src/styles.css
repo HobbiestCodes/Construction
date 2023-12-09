@@ -84,6 +84,7 @@ html, body {
   .main#home header nav.on {
     opacity: 1;
     max-height: 100%;
+    z-index: 4;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -215,6 +216,7 @@ html, body {
   .main#home .main-content.on {
     transition: all 0.5s ease;
     opacity: 0;
+    z-index: -2;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
