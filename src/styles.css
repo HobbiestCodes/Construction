@@ -790,6 +790,10 @@ html, body {
 .main#services .children .content .cards .dabba button:active {
   transform: scale(0.9);
 }
+.main#partners {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 .main#partners h1 {
   font-family: "Tenor Sans", sans-serif;
   font-weight: 400;
@@ -828,6 +832,84 @@ html, body {
     width: 100%;
     font-size: 18px;
     margin-top: 5px;
+  }
+}
+.main#partners .cards {
+  display: flex;
+  gap: 10px;
+  margin: 4%;
+}
+.main#partners .cards .moving {
+  display: flex;
+  gap: 10px;
+  animation: scrolling 70s linear infinite;
+}
+@keyframes scrolling {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+}
+.main#partners .cards .moving:hover, .main#partners .cards .moving:active {
+  animation-play-state: paused;
+}
+.main#partners .cards .moving .card {
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  width: 20rem;
+  scroll-snap-align: start;
+  position: relative;
+  transition: all 0.6s ease;
+  z-index: 10;
+  background-color: rgb(36, 36, 36);
+  overflow: hidden;
+  font-size: 50px;
+  border-radius: 12px;
+}
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .main#partners .cards .moving .card {
+    width: 15rem;
+    height: 12rem;
+  }
+}
+.main#partners .cards .moving .card .img img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 20rem;
+  height: 15rem;
+  filter: brightness(40%);
+}
+.main#partners .cards .moving .card .content {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.main#partners .cards .moving .card .content h1 {
+  font-family: "Tenor Sans", sans-serif;
+  font-size: 23px;
+  color: gold;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 4px 0px;
+  border-color: gold;
+}
+.main#partners .cards .moving .card .content p {
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  color: white;
+  font-weight: 400;
+}
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .main#partners .cards .moving .card .content p {
+    font-size: 16px;
   }
 }
 @media screen and (min-width: 0px) and (max-width: 767px) {

@@ -575,6 +575,7 @@ html, body {
     }
   }
   &#partners {
+    height: fit-content;
     h1 {
       font-family: "Tenor Sans", sans-serif;
       font-weight: 400;
@@ -600,6 +601,82 @@ html, body {
       width: 100%;
       font-size: 18px;
       margin-top: 5px;
+      }
+    }
+
+    .cards {
+      display: flex;
+      gap: 10px;
+      margin: 4%;
+      .moving {
+        display: flex;
+        gap: 10px;
+        animation: scrolling 70s linear infinite;
+        @keyframes scrolling {
+          0%, 100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(-100%);
+        }
+        
+      }
+      &:hover, &:active{
+        animation-play-state: paused;
+      }
+        .card {
+        display: flex;
+        flex-direction: column;
+        height: 15rem;
+        width: 20rem;
+        scroll-snap-align: start;
+        position: relative;
+        transition: all 0.6s ease;
+        z-index: 10;
+        background-color: rgb(36, 36, 36);
+        overflow: hidden;
+        font-size: 50px;
+        border-radius: 12px;
+
+        @include media(mobile) {
+          width: 15rem;
+          height: 12rem;
+        }
+
+        .img {
+          img {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            width: 20rem;
+            height: 15rem;
+            filter: brightness(40%);
+          }
+        }
+        .content {
+          width: 100%;
+          padding: 10px;
+          @include flex($ai: flex-start, $fd: column);
+          h1 {
+            font-family: "Tenor Sans", sans-serif;
+          font-size: 23px;
+          // color: $PrimaryColor;
+          color: $secondaryColor;
+          width: fit-content;
+          padding: 4px 0px;
+          border-color: $secondaryColor;
+          }
+          p {
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+            color: white;
+            font-weight: 400;
+            @include media(mobile) {
+              font-size: 16px;
+            }
+          }
+        }
+      }
       }
     }
   }
